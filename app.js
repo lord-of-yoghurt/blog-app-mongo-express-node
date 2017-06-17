@@ -22,8 +22,8 @@ const Blog = mongoose.model("Blog", blogSchema);
 // test instance
 // Blog.create({
 //   title: "My first post!!!",
-//   image: "https://images.unsplash.com/photo-1489344190946-65cc38a7b531?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=800&h=600&fit=crop&s=013f72eb5b838050b3dce3c5c43ed62c",
-//   description: "Just chillin' with some birds!"
+//   image: "https://images.unsplash.com/photo-1489344190946-65cc38a7b531?ixlib=rb-0.3.5&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=640&h=480&fit=crop&s=013f72eb5b838050b3dce3c5c43ed62c",
+//   body: "Just chillin' with some birds!"
 // });
 
 // Routes
@@ -33,7 +33,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/blogs", (req, res) => {
-  res.render("index");
+  Blog.find({}, (err, blogs) => {
+    err ? console.log(err) : res.render("index", {blogs: blogs});
+  });
 });
 
 

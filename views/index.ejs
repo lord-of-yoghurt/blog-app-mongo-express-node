@@ -1,1 +1,10 @@
 <h1>View all blogs! Someday.</h1>
+
+<% blogs.forEach((b) => { %>
+  <div>
+    <h2><%= b.title %></h2>
+    <h4>Created: <%= b.created %></h4>
+    <img src="<%= b.image %>">
+    <p><%= b.body %></p>
+  </div>
+<% }); %>
