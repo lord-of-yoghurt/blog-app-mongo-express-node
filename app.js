@@ -73,6 +73,11 @@ app.put("/blogs/:id", (req, res) => {
   });
 });
 
+app.delete("/blogs/:id", (req, res) => {
+  Blog.findByIdAndRemove(req.params.id, (err) => {
+    err ? res.redirect(`/blogs/${req.params.id}`) : res.redirect("/blogs");
+  });
+});
 // Listener
 
 app.listen(3000, () => {
