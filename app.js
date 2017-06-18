@@ -68,7 +68,9 @@ app.get("/blogs/:id/edit", (req, res) => {
 });
 
 app.put("/blogs/:id", (req, res) => {
-
+  Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
+    err ? res.redirect("/blogs") : res.redirect(`/blogs/${req.params.id}`);
+  });
 });
 
 // Listener
