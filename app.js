@@ -1,5 +1,6 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
+      methodOverride = require('method-override'),
       mongoose = require('mongoose'),
       moment = require('moment'),
       app = express();
@@ -7,6 +8,7 @@ const express = require('express'),
 app.set("view engine", "ejs");
 app.use(express.static("public"));
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(methodOverride("_method"));
 
 // DB connection
 mongoose.connect("mongodb://localhost/blog-app");
@@ -63,6 +65,10 @@ app.get("/blogs/:id/edit", (req, res) => {
   Blog.findById(req.params.id, (err, foundBlog) => {
     err ? res.redirect("/blogs") : res.render("edit", {blog: foundBlog});
   });
+});
+
+app.put("/blogs/:id", (req, res) => {
+
 });
 
 // Listener
