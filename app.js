@@ -38,6 +38,19 @@ app.get("/blogs", (req, res) => {
   });
 });
 
+app.get("/blogs/new", (req, res) => {
+  res.render("new");
+});
+
+app.post("/blogs", (req, res) => {
+  const title = req.body.title,
+        image = req.body.image,
+        body = req.body.body;
+
+  Blog.create(req.body.blog, (err, newBlog) => {
+    err ? res.render("new") : res.redirect("/blogs");
+  });
+});
 
 app.listen(3000, () => {
   console.log("Your $3000 dinner is served.");
