@@ -1,6 +1,7 @@
 const express = require('express'),
       bodyParser = require('body-parser'),
       methodOverride = require('method-override'),
+      sanitizer = require('express-sanitizer'),
       mongoose = require('mongoose'),
       moment = require('moment'),
       app = express();
@@ -46,10 +47,7 @@ app.get("/blogs/new", (req, res) => {
 });
 
 app.post("/blogs", (req, res) => {
-  const title = req.body.title,
-        image = req.body.image,
-        body = req.body.body;
-
+  req.body.blog.body = req.sanitize(req.body.blog.body);
   Blog.create(req.body.blog, (err, newBlog) => {
     err ? res.render("new") : res.redirect("/blogs");
   });
@@ -68,6 +66,7 @@ app.get("/blogs/:id/edit", (req, res) => {
 });
 
 app.put("/blogs/:id", (req, res) => {
+  req.body.blog.body = req.sanitize(req.body.blog.body)
   Blog.findByIdAndUpdate(req.params.id, req.body.blog, (err, updatedBlog) => {
     err ? res.redirect("/blogs") : res.redirect(`/blogs/${req.params.id}`);
   });
