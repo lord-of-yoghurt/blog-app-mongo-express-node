@@ -52,6 +52,12 @@ app.post("/blogs", (req, res) => {
   });
 });
 
+app.get("/blogs/:id", (req, res) => {
+  Blog.findById(req.params.id, (err, foundBlog) => {
+    err ? res.redirect("/blogs") : res.render("show", {blog: foundBlog});
+  });
+});
+
 app.listen(3000, () => {
   console.log("Your $3000 dinner is served.");
 });

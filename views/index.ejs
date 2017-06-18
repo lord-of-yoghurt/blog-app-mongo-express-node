@@ -5,9 +5,10 @@
 <% blogs.forEach((b) => { %>
   <div>
     <h2><%= b.title %></h2>
-    <h4>Created: <%= b.created %></h4>
     <img src="<%= b.image %>">
-    <p><%= b.body %></p>
+    <span>Created: <%= b.created %></span>
+    <p><%= b.body.substring(0, 100) %>...</p>
+    <a href="/blogs/<%= b._id %>">Read more</a>
   </div>
 <% }); %>
 
