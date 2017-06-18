@@ -2,11 +2,20 @@
 
 <div class="ui main text container segment">
   <div class="ui huge header">New Blog</div>
-  <form action="/blogs" method="post">
-    <input type="text" name="blog[title]" placeholder="Post title">
-    <input type="text" name="blog[image]" placeholder="Image URL">
-    <input type="text" name="blog[body]" placeholder="Type your post here">
-    <input type="submit" value="Whoosh">
+  <form class="ui form" action="/blogs" method="post">
+    <div class="field">
+      <label for="title">Title</label>
+      <input id="title" type="text" name="blog[title]" placeholder="Post title">
+    </div>
+    <div class="field">
+      <label for="imgURL">Image URL</label>
+      <input id="imgURL" type="text" name="blog[image]" placeholder="Image URL">
+    </div>
+    <div class="field">
+      <label for="body">Blog content</label>
+      <textarea id="body" type="text" name="blog[body]" placeholder="Type your post here" rows="8" cols="80"></textarea>
+    </div>
+    <input class="ui blue basic button" type="submit" value="Whoosh">
   </form>
 </div>
 
